@@ -1,7 +1,7 @@
 function loginForm() {
     let form = document.getElementById('loginForm');
     const datosForm = new FormData(form);
-    fetch('http://localhost/zenblog/controlador/login.php', {
+    fetch('http://localhost/Lupablogs/controlador/login.php', {
         method: 'POST',
         body: datosForm
     })
@@ -11,7 +11,7 @@ function loginForm() {
         })
         .then(data => {
             if (data == "Ok") {
-                window.location.href = "http://localhost/zenblog/vistas/index.php";
+                window.location.href = "http://localhost/Lupablogs/vistas/index.php";
             } else {
                 Swal.fire({
                     title: 'Error!',
@@ -26,7 +26,7 @@ function loginForm() {
 function registroForm() {
     let form = document.getElementById('registroForm');
     const datosForm = new FormData(form);
-    fetch('http://localhost/zenblog/controlador/registro.php', {
+    fetch('http://localhost/Lupablogs/controlador/registro.php', {
         method: 'POST',
         body: datosForm
     })
@@ -63,7 +63,7 @@ function registroForm() {
 function createPost() {
     let form = document.getElementById('createPost');
     const datosForm = new FormData(form);
-    fetch('../http://localhost/zenblog/controlador/createPost.php', {
+    fetch('http://localhost/Lupablogs/controlador/createPost.php', {
         method: 'POST',
         body: datosForm
     })
@@ -94,7 +94,7 @@ function createPost() {
 function uploadImages(image) {
     var data = new FormData();
     data.append("files", image);
-    fetch('../http://localhost/zenblog/controlador/uploadImage.php', {
+    fetch('../http://localhost/Lupablogs/controlador/uploadImage.php', {
         method: 'POST',
         body: data
     })
@@ -102,7 +102,7 @@ function uploadImages(image) {
             return response.text()
         })
         .then(url => {
-            var image = $('<img>').attr('src', 'http://localhost/zenblog/assets/imgs_articulos/' + url).attr('class', 'img-fluid');
+            var image = $('<img>').attr('src', 'http://localhost/Lupablogs/assets/imgs_articulos/' + url).attr('class', 'img-fluid');
             $('#summernote').summernote("insertNode", image[0]);
         })
 }

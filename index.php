@@ -59,8 +59,8 @@ if (isset($_SESSION['username']) && isset($_COOKIE['active']) && $_COOKIE['activ
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li data-bs-toggle="modal" data-bs-target="#Login"><a>Log in</a></li>
-          <li class="dropdown"><a><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li style="cursor:pointer"  data-bs-toggle="modal" data-bs-target="#Login"><a>Log in</a></li>
+          <li class="dropdown"><a><span style="cursor:pointer">Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li>
                 <a href="vistas/category.php?categoria=Politics">Politics</a>

@@ -17,7 +17,7 @@ if ($_FILES['imagen']) {
 
         if ($tipo == "image/jpeg" || $tipo == "image/jpg" || $tipo == "image/png") {
 
-            $imagen_carpeta = $_SERVER['DOCUMENT_ROOT'] . '/zenblog/assets/portadas_articulos/';
+            $imagen_carpeta = $_SERVER['DOCUMENT_ROOT'] . '/Lupablogs/assets/portadas_articulos/';
 
             move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_carpeta . $nombre_imagen);
         } else {

@@ -59,7 +59,7 @@ $user = $_COOKIE['active'];
                     <?php
                     require '../component/botonPerfil.php';
                     ?>
-                    <li class="dropdown"><a><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <li class="dropdown"><a><span style="cursor:pointer">Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
                             <li><a href="../vistas/category.php?categoria=Politics"> Politics</a></li>
                             <li><a href="../vistas/category.php?categoria=War"> War</a></li>

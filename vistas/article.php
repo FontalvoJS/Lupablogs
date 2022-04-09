@@ -67,16 +67,34 @@ if (!isset($_GET['id'])) {
         <h1>Share your Opinion</h1>
       </a>
 
+
       <nav id="navbar" class="navbar">
         <ul>
           <?php
-          require '../component/botonPerfil.php';
+          session_start();
+          if (isset($_COOKIE['active']) && $_SESSION['username']) {
           ?>
-          <li class="dropdown"><a href="category.html"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <li class="nav-item"><a href="../index.php">Home</a></li>
+
+            <?php require '../component/botonPerfil.php' ?>
+
+          <?php
+          } else {
+
+          ?>
+            <?php
+            require '../component/modalLogin.php';
+            require '../component/modalRegistro.php';
+            ?>
+            <li class="nav-item"><a href="../index.php">Home</a></li>
+            <li class="nav-item" ><a style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#Login">Log in</a></li>
+          <?php
+          } ?>
+          <li class="dropdown"><a><span style="cursor:pointer">Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="../vistas/category.php?categoria=Politics"> Politics</a></li>
-              <li><a href="../vistas/category.php?categoria=War"> War</a></li>
-              <li><a href="../vistas/category.php?categoria=Healths"> Healths</a></li>
+              <li><a href="category.php?categoria=Politics"> Politics</a></li>
+              <li><a href="category.php?categoria=War"> War</a></li>
+              <li><a href="category.php?categoria=Healths"> Healths</a></li>
             </ul>
           </li>
 
@@ -440,6 +458,7 @@ if (!isset($_GET['id'])) {
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/ajax.js"></script>
 
 </body>
 
