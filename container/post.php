@@ -40,8 +40,8 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo d-flex align-items-center">
-                <h1>ZenBlog</h1>
+            <a href="../index.php" class="logo d-flex align-items-center">
+                <h1>Share your Opinion</h1>
             </a>
 
             <nav id="navbar" class="navbar">
@@ -49,11 +49,11 @@
                     <li><a href="index.php">Home</a></li>
 
                     <?php require '../component/botonPerfil.php' ?>
-                    <li class="dropdown"><a href="category.html"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <li class="dropdown"><a><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="#">Healths</a></li>
-                            <li><a href="#">Politics</a></li>
-                            <li><a href="#">War</a></li>
+                            <li><a href="../vistas/category.php?categoria=Politics"> Politics</a></li>
+                            <li><a href="../vistas/category.php?categoria=War"> War</a></li>
+                            <li><a href="../vistas/category.php?categoria=Healths"> Healths</a></li>
                         </ul>
                     </li>
 
@@ -151,8 +151,8 @@
                     <div class="col-6 col-lg-2">
                         <h3 class="footer-heading">Navigation</h3>
                         <ul class="footer-links list-unstyled">
-                            <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
-                            <li><a href="index.html"><i class="bi bi-chevron-right"></i> Log in</a></li>
+                            <li><a href="../index.php"><i class="bi bi-chevron-right"></i> Home</a></li>
+                            <li><a href="../index.php"><i class="bi bi-chevron-right"></i> Log in</a></li>
                             <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
                             <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
                             <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
