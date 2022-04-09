@@ -94,7 +94,7 @@ function createPost() {
 function uploadImages(image) {
     var data = new FormData();
     data.append("files", image);
-    fetch('../http://localhost/Lupablogs/controlador/uploadImage.php', {
+    fetch('http://localhost/Lupablogs/controlador/uploadImage.php', {
         method: 'POST',
         body: data
     })
