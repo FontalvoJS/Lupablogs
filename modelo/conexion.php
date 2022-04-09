@@ -49,22 +49,19 @@ class DB
     }
     public function registro($user, $pass, $mail)
     {
+        $sql = "INSERT INTO `usuarios` (`id`, `pass`, `email`, `username`) VALUES (NULL, '$pass', '$mail', '$user')";
+        $send = $this->consulta($sql);
+        if (isset($send) || !empty($send)) {
+            return "Ok";
+        }
+    }
+    public function consulta($sql)
+    {
         $pdo = $this->conectar();
-        $sql = "SELECT `username` FROM `usuarios` WHERE username = '$user' OR email = '$mail'";
         $query = $pdo->prepare($sql);
         $query->execute();
-        if ($query->rowCount() > 0) {
-            echo "Ya existe";
-        } else {
-            $sql = "INSERT INTO `usuarios` (`id`, `pass`, `email`, `username`) VALUES (NULL, '$pass', '$mail', '$user')";
-            $query = $pdo->prepare($sql);
-            $query->execute();
-            if ($query->rowCount() > 0) {
-                echo "Ok";
-            } else {
-                echo "Error";
-            }
-        }
+        $quer = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $quer;
     }
     public function crearPost($titulo, $descripcion, $categoria, $contenido, $imagen)
     {

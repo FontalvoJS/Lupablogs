@@ -40,7 +40,7 @@
                               </div>
 
                           </form>
-                          <p class="text-center mt-3">Not a member? <a data-toggle="tab" href="#signup">Access</a></p>
+                          <p class="text-center mt-3">Eres miembro? <br><button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#Login">Access</button></p>
                       </div>
                   </div>
               </div>

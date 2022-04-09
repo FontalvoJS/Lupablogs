@@ -46,7 +46,8 @@
                                   </div>
                               </div>
                           </form>
-                          <p class="text-center mt-3">Not a member? <a data-bs-target="#Registro" data-bs-toggle="modal">Sign Up</a></p>
+                          <hr style="margin-top:3%">
+                          <p class="text-center mt-3">Not a member? <br> <button class="btn btn-outline-dark" data-bs-target="#Registro" data-bs-toggle="modal">Sign Up</button></p>
                       </div>
                   </div>
               </div>
