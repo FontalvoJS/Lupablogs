@@ -6,11 +6,11 @@ function loginForm() {
         body: datosForm
     })
         .then(response => {
-            let data = response.text();
-            return data;
+            return response.text();
         })
         .then(data => {
-            if (data == "Ok") {
+
+            if (data == "True") {
                 window.location.href = "http://localhost/Lupablogs/vistas/index.php";
             } else {
                 Swal.fire({
@@ -21,6 +21,45 @@ function loginForm() {
                 })
             }
         })
+}
+
+function deletePost(id) {
+    let list_id = document.getElementById('id' + id);
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.value) {
+            fetch('http://localhost/Lupablogs/controlador/deletePost.php', {
+                method: 'POST',
+                body: JSON.stringify({ id: id })
+            })
+                .then(response => {
+                    return response.text()
+                })
+                .then(data => {
+                    if (data == "Ok") {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                        list_id.classList.add('d-none');
+                    } else {
+                        Swal.fire(
+                            'Cancel!',
+                            'Don´t have been deleted',
+                            'error'
+                        )
+                    }
+                })
+        }
+    })
 }
 
 function registroForm() {
@@ -37,22 +76,25 @@ function registroForm() {
         .then(data => {
             if (data == "Ok") {
                 Swal.fire({
-                    title: 'Registro',
-                    text: 'Usuario registrado correctamente',
+                    title: 'Succesfully!',
+                    text: 'You have been registered correctly',
                     icon: 'success',
-                    confirmButtonText: 'Aceptar'
+                    confirmButtonText: false
                 })
+                form.reset();
+                window.location.href = "http://localhost/Lupablogs/vistas/index.php";
+
             } else if (data == "Ya existe") {
                 Swal.fire({
                     title: 'Error!',
-                    text: 'El usuario ya existe',
+                    text: 'The user already exists',
                     icon: 'error',
                     confirmButton: false
                 })
             } else {
                 Swal.fire({
                     title: 'Error!',
-                    text: 'Error, no se ha podido registrar el usuario',
+                    text: 'Error, don´t have been registered',
                     icon: 'error',
                     confirmButton: false
                 })
@@ -105,4 +147,39 @@ function uploadImages(image) {
             var image = $('<img>').attr('src', 'http://localhost/Lupablogs/assets/imgs_articulos/' + url).attr('class', 'img-fluid');
             $('#summernote').summernote("insertNode", image[0]);
         })
+}
+
+function alterPost(id) {
+    let alterForm = document.getElementById('alterForm');
+    const datosForm = new FormData(alterForm);
+    datosForm.append('id', id);
+    fetch('http://localhost/Lupablogs/controlador/alterPost.php', {
+        method: 'POST',
+        body: datosForm
+
+    })
+        .then(response => {
+            let data = response.text();
+            return data;
+        })
+        .then(data => {
+            if (data == "Ok") {
+                Swal.fire({
+                    title: 'Muy bien!',
+                    text: 'Se ha modificado el post correctamente',
+                    icon: 'success',
+                    footer: '<a href="#">Quiero ver mi articulo!</a>',
+                })
+                alterForm.reset();
+                window.location.href = "http://localhost/Lupablogs/vistas/dashboard.php";
+
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Error, no se ha podido modificar el post',
+                    icon: 'error',
+                })
+            }
+        }
+        )
 }

@@ -4,8 +4,8 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 $db = new DB();
 $result = $db->iniciarSesion($username, $password);
-if ($result == "Completado") {
-    echo $result;
+if ($result) {
+    echo "True";
 } else {
-    echo $result;
+    echo "False";
 }

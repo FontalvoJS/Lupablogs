@@ -45,10 +45,12 @@
                 <ul>
                     <?php require '../component/botonPerfil.php' ?>
                     <li class="dropdown"><a><span style="cursor:pointer">Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="../vistas/category.php?categoria=Politics"> Politics</a></li>
-                            <li><a href="../vistas/category.php?categoria=War"> War</a></li>
-                            <li><a href="../vistas/category.php?categoria=Healths"> Healths</a></li>
+                      <ul>
+                            <li><a href="../vistas/category.php?categoria=Global">Global</a></li>
+                            <li><a href="../vistas/category.php?categoria=Politics">Politics</a></li>
+                            <li><a href="../vistas/category.php?categoria=War">Wars</a></li>
+                            <li><a href="../vistas/category.php?categoria=Healths">Healths</a></li>
+                            <li><a href="../vistas/category.php?categoria=Covid19">Covid 19</a></li>
                         </ul>
                     </li>
 

@@ -1,7 +1,7 @@
 <?php
 require '../modelo/conexion.php';
 $titulo = $_POST['titulo'];
-$redaccion = $_POST['redaccion'];
+$redaccion = addslashes($_POST['redaccion']);
 $descripcion = $_POST['descripcion'];
 $categoria = $_POST['categoria'];
 if ($_FILES['imagen']) {
@@ -27,17 +27,17 @@ if ($_FILES['imagen']) {
     } else {
     }
 }
-$DB = new DB();
 
 if (
     isset($titulo) && isset($redaccion) && isset($descripcion) && isset($categoria)
     && !empty($titulo) && !empty($redaccion) && !empty($descripcion) && !empty($categoria)
 ) {
-    $DB->crearPost($titulo, $descripcion, $categoria, $redaccion, $nombre_imagen);
-    if ($DB == "Ok") {
-        return $DB;
-    } else {
-        return $DB;
+    $DB = new DB();
+    $data = $DB->crearPost($titulo, $descripcion, $categoria, $redaccion, $nombre_imagen);
+    if ($data) {
+        echo "Ok";
+    }else{
+        return false;
     }
 } else {
     return "Error";

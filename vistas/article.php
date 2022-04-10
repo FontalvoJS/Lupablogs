@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 require '../modelo/conexion.php';
 if (!isset($_GET['id'])) {
   header("Location: index.php");
@@ -22,6 +21,7 @@ if (!isset($_GET['id'])) {
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   <title><?php echo $titulo; ?></title>
   <meta content="" name="description">
@@ -87,14 +87,17 @@ if (!isset($_GET['id'])) {
             require '../component/modalRegistro.php';
             ?>
             <li class="nav-item"><a href="../index.php">Home</a></li>
-            <li class="nav-item" ><a style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#Login">Log in</a></li>
+            <li class="nav-item"><a style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#Login">Log in</a></li>
           <?php
           } ?>
+
           <li class="dropdown"><a><span style="cursor:pointer">Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="category.php?categoria=Politics"> Politics</a></li>
-              <li><a href="category.php?categoria=War"> War</a></li>
-              <li><a href="category.php?categoria=Healths"> Healths</a></li>
+              <li><a href="../vistas/category.php?categoria=Global">Global</a></li>
+              <li><a href="../vistas/category.php?categoria=Politics">Politics</a></li>
+              <li><a href="../vistas/category.php?categoria=War">Wars</a></li>
+              <li><a href="../vistas/category.php?categoria=Healths">Healths</a></li>
+              <li><a href="../vistas/category.php?categoria=Covid19">Covid 19</a></li>
             </ul>
           </li>
 
@@ -135,7 +138,7 @@ if (!isset($_GET['id'])) {
 
             <!-- ======= Single Post Content ======= -->
             <div class="single-post">
-              <div class="post-meta"><span class="date"><?php echo $categoria ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($post['fecha'], 0, -9) ?></span> <span class="mx-1">&bullet;</span><span><?php echo $autor  ?></span> </div>
+              <div class="post-meta"><span class="date"><?php echo $categoria ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($post['fecha'], 0, -9) ?></span> <span class="mx-1">&bullet;</span><span><?php echo $autor  ?></span><span class="mx-1">&bullet;</span><span class="mx-1"><a href="editPost.php?id=<?php echo $id; ?>"><i class="fas fa-edit"></i></a></span> </div>
               <h1 class="mb-5"><?php echo $titulo ?></h1>
               <img src="../assets/portadas_articulos/<?php echo $imagen; ?>" class="img-fluid" alt="imagen de portada">
               <hr style="margin-top:5%">
@@ -256,12 +259,12 @@ if (!isset($_GET['id'])) {
 
               </ul>
 
-              <div class="tab-content" id="pills-tabContent">
+              <div class="tab-content" id="pills-tabContent" style="max-height:1000px;overflow:auto">
 
                 <!-- Popular -->
 
                 <?php
-                $sql = "SELECT * FROM `posts` WHERE `posts`.`id` != $id ORDER BY `posts`.`id` DESC LIMIT 3";
+                $sql = "SELECT * FROM `posts` WHERE `posts`.`id` != $id ORDER BY `posts`.`id` DESC LIMIT 5";
                 $consulta = $DB->consulta($sql);
 
                 for ($i = 0; $i < count($consulta); $i++) {
@@ -298,6 +301,9 @@ if (!isset($_GET['id'])) {
                 <li><a href="category.php?categoria=War"><i class="bi bi-chevron-right"></i> War</a></li>
                 <li><a href="category.php?categoria=Politics"><i class="bi bi-chevron-right"></i> Politics</a></li>
                 <li><a href="category.php?categoria=Healths"><i class="bi bi-chevron-right"></i> Healths</a></li>
+                <li><a href="category.php?categoria=Global"><i class="bi bi-chevron-right"></i> Global</a></li>
+                <li><a href="category.php?categoria=Covid19"><i class="bi bi-chevron-right"></i> Covid19</a></li>
+
               </ul>
             </div><!-- End Categories -->
 

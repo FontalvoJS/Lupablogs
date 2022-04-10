@@ -22,7 +22,7 @@
                               </div>
                           </div>
                           <form id="loginForm" class="signin-form">
-                              <div class="form-group mt-3">
+                              <div class="form-group mt-3 mb-2">
                                   <label class="form-control-placeholder" for="username">Username</label>
                                   <input type="text" class="form-control" name="username" required="">
                               </div>

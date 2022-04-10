@@ -54,7 +54,7 @@ $result = $DB->consulta($sql);
       <a href="../index.php" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="../assets/img/logo.png" alt=""> -->
-        <h1>Tránsito Corrupto</h1>
+        <h1>Share Your Opinion</h1>
       </a>
 
       <nav id="navbar" class="navbar">
@@ -81,9 +81,11 @@ $result = $DB->consulta($sql);
           } ?>
           <li class="dropdown"><a><span style="cursor:pointer">Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="category.php?categoria=Politics"> Politics</a></li>
-              <li><a href="category.php?categoria=War"> War</a></li>
-              <li><a href="category.php?categoria=Healths"> Healths</a></li>
+              <li><a href="../vistas/category.php?categoria=Global">Global</a></li>
+              <li><a href="../vistas/category.php?categoria=Politics">Politics</a></li>
+              <li><a href="../vistas/category.php?categoria=War">Wars</a></li>
+              <li><a href="../vistas/category.php?categoria=Healths">Healths</a></li>
+              <li><a href="../vistas/category.php?categoria=Covid19">Covid 19</a></li>
             </ul>
           </li>
 
@@ -122,25 +124,31 @@ $result = $DB->consulta($sql);
 
           <div class="col-md-9" data-aos="fade-up">
             <h3 class="category-title">Category: <?php echo $categoria; ?></h3>
-            <?php for ($i = 0; $i < count($result); $i++) { ?>
-              <div class="d-md-flex post-entry-2 half"><a href="article.php?id=<?php echo $result[0]['id']; ?>" class="me-4 thumbnail">
-                  <img src="../assets/portadas_articulos/<?php echo $result[0]['Imagen']; ?>" alt="" class="img-fluid">
-                </a>
-                <div>
-                  <div class="post-meta"><span class="date"><?php echo $result[0]['categoria']; ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($result[0]['fecha'], 0, -9); ?></span></div>
-                  <h3><a href="article.php?id=<?php echo $result[0]['id']; ?>"><?php echo $result[0]['titulo']; ?></a></h3>
-                  <p><?php echo $result[0]['descripcion']; ?></p>
-                  <div class="d-flex align-items-center author">
-                    <div class="name">
-                      <h3 class="m-0 p-0"><?php echo $result[0]['username']; ?></h3>
+            <?php
+            if ($result) {
+              for ($i = 0; $i < count($result); $i++) { ?>
+                <div  class="d-md-flex post-entry-2 half"><a href="article.php?id=<?php echo $result[0]['id']; ?>" class="me-4 thumbnail">
+                    <img src="../assets/portadas_articulos/<?php echo $result[0]['Imagen']; ?>" alt="" class="img-fluid">
+                  </a>
+                  <div>
+                    <div class="post-meta"><span class="date"><?php echo $result[0]['categoria']; ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($result[0]['fecha'], 0, -9); ?></span></div>
+                    <h3><a href="article.php?id=<?php echo $result[0]['id']; ?>"><?php echo $result[0]['titulo']; ?></a></h3>
+                    <p><?php echo $result[0]['descripcion']; ?></p>
+                    <div class="d-flex align-items-center author">
+                      <div class="name">
+                        <h3 class="m-0 p-0"><?php echo $result[0]['username']; ?></h3>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+                <hr>
+              <?php
+              }
+            } else { ?>
+              <hr>
+              <h1>No hay artículos disponibles por el momento</h1>
             <?php
             } ?>
-
-
 
             <div class="text-start py-4 d-none">
               <div class="custom-pagination">
@@ -293,7 +301,7 @@ $result = $DB->consulta($sql);
               </div>
             </div>
 
-            <div class="aside-block">
+            <div class="aside-block d-none">
               <h3 class="aside-title">Video</h3>
               <div class="video-post">
                 <a href="https://www.youtube.com/watch?v=AiFfDjmd0jU" class="glightbox link-video">
@@ -309,6 +317,8 @@ $result = $DB->consulta($sql);
                 <li><a href="category.php?categoria=Politics"><i class="bi bi-chevron-right"></i> Politics</a></li>
                 <li><a href="category.php?categoria=War"><i class="bi bi-chevron-right"></i> War</a></li>
                 <li><a href="category.php?categoria=Healths"><i class="bi bi-chevron-right"></i> Healths</a></li>
+                <li><a href="category.php?categoria=Global"><i class="bi bi-chevron-right"></i> Global</a></li>
+                <li><a href="category.php?categoria=Covid19"><i class="bi bi-chevron-right"></i> Covid 19</a></li>
 
               </ul>
             </div><!-- End Categories -->

@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 require '../modelo/conexion.php';
 $user = $_COOKIE['active'];
 ?>
@@ -9,7 +8,7 @@ $user = $_COOKIE['active'];
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <title>Dashboard</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -34,12 +33,7 @@ $user = $_COOKIE['active'];
     <link href="../assets/css/variables.css" rel="stylesheet">
     <link href="../assets/css/main.css" rel="stylesheet">
 
-    <!-- =======================================================
-  * Template Name: ZenBlog - v1.0.0
-  * Template URL: https://bootstrapmade.com/zenblog-bootstrap-blog-template/
-  * Author: BootstrapMade.com
-  * License: https:///bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
@@ -61,9 +55,11 @@ $user = $_COOKIE['active'];
                     ?>
                     <li class="dropdown"><a><span style="cursor:pointer">Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="../vistas/category.php?categoria=Politics"> Politics</a></li>
-                            <li><a href="../vistas/category.php?categoria=War"> War</a></li>
-                            <li><a href="../vistas/category.php?categoria=Healths"> Healths</a></li>
+                            <li><a href="../vistas/category.php?categoria=Global">Global</a></li>
+                            <li><a href="../vistas/category.php?categoria=Politics">Politics</a></li>
+                            <li><a href="../vistas/category.php?categoria=War">Wars</a></li>
+                            <li><a href="../vistas/category.php?categoria=Healths">Healths</a></li>
+                            <li><a href="../vistas/category.php?categoria=Covid19">Covid 19</a></li>
                         </ul>
                     </li>
 
@@ -101,39 +97,69 @@ $user = $_COOKIE['active'];
             <div class="container">
                 <div class="row">
                     <div class="col-md-9 post-content" data-aos="fade-up">
-                        <h1 class="mt-5 mb-5">All your articles</h1>
+                        <h1 style="margin-top:10%;margin-bottom:8%">All Articles</h1>
                         <!-- ======= Single Post Content ======= -->
                         <div class="single-post">
-                            <table class="table">
+
+                            <table class="table mb-5">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Date post</th>
+                                        <th scope="col">Autor</th>
+                                        <th scope="col"></th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+
+                                    <?php
+                                    $user = $_COOKIE['active'];
+                                    $sql = "SELECT * FROM posts WHERE username = '$user' ORDER BY fecha";
+                                    $DB = new DB();
+                                    $result = $DB->consulta($sql);
+                                    if ($result) {
+
+                                        foreach ($result as $valor) {
+                                    ?>
+                                            <tr id="id<?php echo $valor['id']; ?>">
+                                                <td><?php echo $valor['titulo']; ?></td>
+                                                <td><?php echo $valor['categoria']; ?></td>
+                                                <td><?php echo $valor['fecha']; ?></td>
+                                                <td><?php echo $valor['username']; ?></td>
+                                                <td>
+                                                    <div class="btn-group dropend">
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">
+                                                            <i class="fas fa-arrow-right"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu" style="max-width:50px">
+                                                            <li class="dropdown-item" onclick="deletePost(<?php echo $valor['id']; ?>)"><i class="fas fa-trash"></i></li>
+                                                            <li class="dropdown-item" onclick="location.href='../vistas/editPost.php?id=<?php echo $valor['id']; ?>'"><i class="fas fa-edit"></i></li>
+                                                            <li class="dropdown-item" onclick="location.href='../vistas/article.php?id=<?php echo $valor['id']; ?>'"><i class="fas fa-external-link"></i></li>
+
+                                                        </ul>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                        <?php
+                                        }
+                                    } else {
+
+                                        ?>
+                                        <tr>
+                                            <td>Crea tu primer artículo</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
+
                         </div><!-- End Single Post Content -->
 
                         <!-- ======= Comments ======= -->
@@ -239,41 +265,7 @@ $user = $_COOKIE['active'];
                     </div>
                     <div class="col-md-3">
                         <!-- ======= Sidebar ======= -->
-                        <div class="aside-block">
-
-                            <ul class="nav nav-pills custom-tab-nav mb-4" id="pills-tab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="pills-popular-tab" data-bs-toggle="pill" data-bs-target="#pills-popular" type="button" role="tab" aria-controls="pills-popular" aria-selected="true">Others posts</button>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" id="pills-tabContent">
-
-                                <!-- Popular -->
-
-                                <?php
-                                $sql = "SELECT * FROM `posts` WHERE `posts`.`username` = '$username'";
-                                $DB = new DB();
-                                $consulta = $DB->consulta($sql);
-
-                                for ($i = 0; $i < count($consulta); $i++) {
-
-                                ?>
-
-                                    <div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab">
-                                        <div class="post-entry-1 border-bottom">
-                                            <div class="post-meta"><span class="date"><?php echo substr($consulta[$i]['fecha'], 0, -9); ?></span></div>
-                                            <h2 class="mb-2"><a href="article.php?id=<?php echo $consulta[$i]['id'] ?>"><?php echo $consulta[$i]['titulo']; ?></a></h2>
-                                            <span class="author mb-3 d-block"><?php echo $consulta[$i]['username'] ?></span>
-                                        </div>
-
-                                    </div>
-                                <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
+                        
 
                         <div class="aside-block d-none">
                             <h3 class="aside-title">Video</h3>
@@ -284,15 +276,8 @@ $user = $_COOKIE['active'];
                                 </a>
                             </div>
                         </div><!-- End Video -->
-
-                        <div class="aside-block">
-                            <h3 class="aside-title">Categories</h3>
-                            <ul class="aside-links list-unstyled">
-                                <li><a href="category.php?categoria=War"><i class="bi bi-chevron-right"></i> War</a></li>
-                                <li><a href="category.php?categoria=Politics"><i class="bi bi-chevron-right"></i> Politics</a></li>
-                                <li><a href="category.php?categoria=Healths"><i class="bi bi-chevron-right"></i> Healths</a></li>
-                            </ul>
-                        </div><!-- End Categories -->
+                        <?php require '../component/categories_dashboard.php'; ?>
+                        <!-- End Categories -->
 
                         <div class="aside-block d-none">
                             <h3 class="aside-title">Tags</h3>
@@ -312,6 +297,7 @@ $user = $_COOKIE['active'];
                 </div>
             </div>
         </section>
+
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
@@ -443,6 +429,8 @@ $user = $_COOKIE['active'];
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -451,6 +439,7 @@ $user = $_COOKIE['active'];
 
     <!-- Template Main JS File -->
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/ajax.js"></script>
 
 </body>
 

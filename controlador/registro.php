@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 require '../modelo/conexion.php';
 $user = $_POST['username'];
 $pass = $_POST['password'];
@@ -16,15 +15,18 @@ if (
 } else {
 
     $DB = new DB();
+    $pass2 = password_hash($pass, PASSWORD_BCRYPT);
     $sql = "SELECT `username` FROM `usuarios` WHERE username = '$user' OR email = '$mail'";
     $res = $DB->consulta($sql);
     if ($res) {
         echo "Ya existe";
         die();
     } else {
-        $query = $DB->registro($user, $pass, $mail);
+        $query = $DB->registro($user, $pass2, $mail);
         if ($query) {
-            echo $query;
+           echo "Ok";
+        }else{
+            echo "Error";
         }
     }
 }
