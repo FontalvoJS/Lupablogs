@@ -2,7 +2,6 @@
     <ul>
         <li><a href="http://localhost/Lupablogs/vistas/post.php">Post now</a></li>
         <li><a href="http://localhost/Lupablogs/vistas/dashboard.php">My dashboard</a></li>
-        <li><a href="#">My feed</a></li>
         <li><a href="http://localhost/Lupablogs/controlador/logout.php">Log out</a></li>
     </ul>
 </li>

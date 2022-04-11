@@ -133,16 +133,16 @@ $result = $DB->consulta($sql);
             <?php
             if ($result) {
               for ($i = 0; $i < count($result); $i++) { ?>
-                <div class="d-md-flex post-entry-2 half"><a href="article.php?id=<?php echo $result[0]['id']; ?>" class="me-4 thumbnail">
-                    <img src="../assets/portadas_articulos/<?php echo $result[0]['Imagen']; ?>" alt="" class="img-fluid">
+                <div class="d-md-flex post-entry-2 half"><a href="article.php?id=<?php echo $result[$i]['id']; ?>" class="me-4 thumbnail">
+                    <img src="../assets/portadas_articulos/<?php echo $result[$i]['Imagen']; ?>" alt="" class="img-fluid">
                   </a>
                   <div style="overflow-wrap: anywhere;">
-                    <div class="post-meta"><span class="date"><?php echo $result[0]['categoria']; ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($result[0]['fecha'], 0, -9); ?></span></div>
-                    <h3><a href="article.php?id=<?php echo $result[0]['id']; ?>"><?php echo $result[0]['titulo']; ?></a></h3>
-                    <p><?php echo $result[0]['descripcion']; ?></p>
+                    <div class="post-meta"><span class="date"><?php echo $result[$i]['categoria']; ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($result[$i]['fecha'], 0, -9); ?></span></div>
+                    <h3><a href="article.php?id=<?php echo $result[$i]['id']; ?>"><?php echo $result[$i]['titulo']; ?></a></h3>
+                    <p><?php echo $result[$i]['descripcion']; ?></p>
                     <div class="d-flex align-items-center author">
                       <div class="name">
-                        <h3 class="m-0 p-0"><?php echo $result[0]['username']; ?></h3>
+                        <h3 class="m-0 p-0"><?php echo $result[$i]['username']; ?></h3>
                       </div>
                     </div>
                   </div>

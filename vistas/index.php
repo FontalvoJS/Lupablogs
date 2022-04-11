@@ -8,6 +8,7 @@ if (!isset($_COOKIE['active']) && !isset($_SESSION['username'])) {
 <?php
   $userSession = $_SESSION['username'];
   require '../container/indexHtml.php';
+
 ?>
 <?php
 }

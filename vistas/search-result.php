@@ -1,6 +1,6 @@
 <?php
 require '../modelo/conexion.php';
-if (isset($_GET['busqueda'])) {
+if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
 ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -197,7 +197,7 @@ if (isset($_GET['busqueda'])) {
 
                   <?php
                   $DB = new DB();
-                  $sql = "SELECT * FROM `posts` ORDER BY `posts`.`id` DESC LIMIT 5";
+                  $sql = "SELECT * FROM `posts` ORDER BY `posts`.`id` DESC";
                   $consulta = $DB->consulta($sql);
 
                   for ($i = 0; $i < count($consulta); $i++) {

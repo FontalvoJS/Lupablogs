@@ -40,7 +40,6 @@ function sendFormContact() {
                     title: 'Very good!',
                     text: 'It has been sent successfully, I sent you a copy to your email address.',
                     icon: 'success',
-                    footer: '<a href="#">Quiero ver mi articulo!</a>',
                 })
                 form.reset();
 
@@ -150,7 +149,6 @@ function createPost() {
                     title: 'Muy bien!',
                     text: 'Se ha subido tu artículo correctamente',
                     icon: 'success',
-                    footer: '<a href="#">Quiero ver mi articulo!</a>',
                 })
 
 
@@ -199,7 +197,6 @@ function alterPost(id) {
                     title: 'Muy bien!',
                     text: 'Se ha modificado el post correctamente',
                     icon: 'success',
-                    footer: '<a href="#">Quiero ver mi articulo!</a>',
                 })
                 alterForm.reset();
                 window.location.href = "http://localhost/Lupablogs/vistas/dashboard.php";

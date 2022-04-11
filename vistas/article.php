@@ -121,7 +121,7 @@ if (!isset($_GET['id'])) {
 
         <!-- ======= Search Form ======= -->
         <div class="search-form-wrap js-search-form-wrap">
-          <form id="formSearch" action="vistas/search-result.php" method="get" class="search-form">
+          <form id="formSearch" action="search-result.php" method="get" class="search-form">
             <span class="icon bi-search"></span>
             <input type="text" placeholder="Search" name="busqueda" class="form-control">
             <button class="btn js-search-close" onclick="document.getElementById('formSearch').submit();" type="submit"><span><i class="fas fa-arrow-right" style="font-size:14px;position:relative;bottom:5px;right:5px"></i></span></button>
@@ -143,7 +143,7 @@ if (!isset($_GET['id'])) {
 
             <!-- ======= Single Post Content ======= -->
             <div class="single-post">
-              <div class="post-meta"><span class="date"><?php echo $categoria ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($post['fecha'], 0, -9) ?></span> <span class="mx-1">&bullet;</span><span><?php echo $autor  ?></span><span class="mx-1">&bullet;</span><span class="mx-1"><a href="editPost.php?id=<?php echo $id; ?>"><i class="fas fa-edit"></i></a></span> </div>
+              <div class="post-meta"><span class="date"><?php echo $categoria ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($post['fecha'], 0, -9) ?></span> <span class="mx-1">&bullet;</span><span><?php echo $autor  ?></span><span class="mx-1">&bullet;</span><span class="mx-1"><?php if(isset($_COOKIE['active'])){ ?><a href="editPost.php?id=<?php echo $id; ?>"><i class="fas fa-edit"></i></a><?php } ?></span> </div>
               <h1 class="mb-5"><?php echo $titulo ?></h1>
               <img src="../assets/portadas_articulos/<?php echo $imagen; ?>" class="img-fluid" alt="imagen de portada">
               <hr style="margin-top:5%">
@@ -269,27 +269,27 @@ if (!isset($_GET['id'])) {
                 <!-- Popular -->
 
                 <?php
-                $sql = "SELECT * FROM `posts` ORDER BY `posts`.`id` DESC LIMIT 5";
+                $sql = "SELECT * FROM `posts` ORDER BY `posts`.`id` DESC";
                 $consulta = $DB->consulta($sql);
 
                 for ($i = 0; $i < count($consulta); $i++) {
 
                 ?>
-                
-                <div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab">
-                      <div class="post-entry-1 border-bottom">
-                        <div class="post-meta"><span class="date"><?php echo substr($consulta[$i]['fecha'], 0, -9); ?></span></div>
-                        <h2 class="mb-2"><a href="article.php?id=<?php echo $consulta[$i]['id'] ?>"><?php echo $consulta[$i]['titulo']; ?></a></h2>
-                        <span class="author mb-3 d-block"><?php echo $consulta[$i]['username'] ?></span>
-                      </div>
 
+                  <div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab">
+                    <div class="post-entry-1 border-bottom">
+                      <div class="post-meta"><span class="date"><?php echo substr($consulta[$i]['fecha'], 0, -9); ?></span></div>
+                      <h2 class="mb-2"><a href="article.php?id=<?php echo $consulta[$i]['id'] ?>"><?php echo $consulta[$i]['titulo']; ?></a></h2>
+                      <span class="author mb-3 d-block"><?php echo $consulta[$i]['username'] ?></span>
                     </div>
+
+                  </div>
                 <?php
                 }
                 ?>
-                <?php require '../component/categories_List.php' ?>
-
               </div>
+              <br>
+              <?php require '../component/categories_List.php' ?>
             </div>
 
             <div class="aside-block d-none">
@@ -302,13 +302,13 @@ if (!isset($_GET['id'])) {
               </div>
             </div><!-- End Video -->
 
-           
-            </div><!-- End Categories -->
 
-            
+          </div><!-- End Categories -->
 
-          </div>
+
+
         </div>
+      </div>
       </div>
     </section>
   </main><!-- End #main -->
