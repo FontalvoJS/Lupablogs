@@ -80,13 +80,13 @@
                 <!-- ======= Search Form ======= -->
                 <!-- ======= Search Form ======= -->
                 <!-- ======= Search Form ======= -->
-          <div class="search-form-wrap js-search-form-wrap">
-            <form id="formSearch" action="../vistas/search-result.php" method="get" class="search-form">
-              <span class="icon bi-search"></span>
-              <input type="text" placeholder="Search" name="busqueda" class="form-control">
-              <button class="btn js-search-close" onclick="document.getElementById('formSearch').submit();" type="submit"><span><i class="fas fa-arrow-right" style="font-size:14px;position:relative;bottom:5px;right:5px"></i></span></button>
-            </form>
-          </div><!-- End Search Form -->
+                <div class="search-form-wrap js-search-form-wrap">
+                    <form id="formSearch" action="../vistas/search-result.php" method="get" class="search-form">
+                        <span class="icon bi-search"></span>
+                        <input type="text" placeholder="Search" name="busqueda" class="form-control">
+                        <button class="btn js-search-close" onclick="document.getElementById('formSearch').submit();" type="submit"><span><i class="fas fa-arrow-right" style="font-size:14px;position:relative;bottom:5px;right:5px"></i></span></button>
+                    </form>
+                </div><!-- End Search Form -->
 
             </div>
 
@@ -122,7 +122,8 @@
                         <div class="form-group">
                             <small id="helpId" class="text-muted">Categories</small>
                             <select name="categoria" class="form-select">
-                                <option value="Healths" selected>Healths</option>
+                            <option disabled selected ><?php echo $result['categoria']; ?></option>
+                                <option value="Healths">Healths</option>
                                 <option value="Politics">Politics</option>
                                 <option value="War">War</option>
                                 <option value="Global">Global</option>

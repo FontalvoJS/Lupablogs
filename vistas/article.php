@@ -143,8 +143,8 @@ if (!isset($_GET['id'])) {
 
             <!-- ======= Single Post Content ======= -->
             <div class="single-post">
-              <div class="post-meta"><span class="date"><?php echo $categoria ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($post['fecha'], 0, -9) ?></span> <span class="mx-1">&bullet;</span><span><?php echo $autor  ?></span><span class="mx-1">&bullet;</span><span class="mx-1"><?php if (isset($_COOKIE['active'])) { ?><a href="editPost.php?id=<?php echo $id; ?>"><i class="fas fa-edit"></i></a><?php } ?></span> </div>
-              <h1 class="mb-5"><?php echo $titulo ?></h1>
+              <div class="post-meta"><span class="date"><?php echo $categoria ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($post['fecha'], 0, -9) ?></span> <span class="mx-1">&bullet;</span><span><?php echo $autor  ?></span><span class="mx-1">&bullet;</span><span class="mx-1"><?php if (isset($_COOKIE['active'])) { ?><a href="editPost.php?id=<?php echo $id; ?>"><i class="fas fa-edit" style="color:red;font-size:20px;float:right"></i></a><?php } ?></span> </div>
+              <h1 class="mb-5 mt-4"><?php echo $titulo ?></h1>
               <img src="../assets/portadas_articulos/<?php echo $imagen; ?>" class="img-fluid" alt="imagen de portada">
               <hr style="margin-top:5%">
               <div style="font-size:18px;font-weight:500">

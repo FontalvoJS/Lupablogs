@@ -20,11 +20,7 @@ if ($_FILES['imagen']) {
             $imagen_carpeta = $_SERVER['DOCUMENT_ROOT'] . '/Lupablogs/assets/portadas_articulos/';
 
             move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_carpeta . $nombre_imagen);
-        } else {
-
-            echo "Solo se pueden subir imagenes .JPG / .JPEG / .PNG";
         }
-    } else {
     }
 }
 
@@ -36,7 +32,7 @@ if (
     $data = $DB->crearPost($titulo, $descripcion, $categoria, $redaccion, $nombre_imagen);
     if ($data) {
         echo "Ok";
-    }else{
+    } else {
         return false;
     }
 } else {

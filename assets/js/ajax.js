@@ -197,14 +197,13 @@ function alterPost(id) {
             return data;
         })
         .then(data => {
-            if (data == "Ok") {
+            if (data == "Ok" || data == "OkOk" || data == "OkOkOk" || data == "OkOkOkOk" || data == "OkOkOkOkOk") {
                 Swal.fire({
                     title: 'Muy bien!',
                     text: 'Se ha modificado el post correctamente',
                     icon: 'success',
                 })
-                alterForm.reset();
-                window.location.href = "http://localhost/Lupablogs/vistas/dashboard.php";
+                location.reload();
 
             } else {
                 Swal.fire({
