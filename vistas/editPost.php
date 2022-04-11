@@ -1,6 +1,6 @@
 <?php
 require '../modelo/conexion.php';
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && isset($_COOKIE['active'])) {
     $DB = new DB();
     $id = $_GET['id'];
     $sql = "SELECT * FROM `posts` WHERE id = $id";

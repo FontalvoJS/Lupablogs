@@ -14,12 +14,7 @@
                               <div class="w-100">
                                   <h3 class="mb-4">Sign In</h3>
                               </div>
-                              <div class="w-100">
-                                  <p class="social-media d-flex justify-content-end">
-                                      <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-                                      <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-                                  </p>
-                              </div>
+                            
                           </div>
                           <form id="loginForm" class="signin-form">
                               <div class="form-group mt-3 mb-2">
@@ -29,7 +24,6 @@
                               <div class="form-group">
                                   <label class="form-control-placeholder" for="password">Password</label>
                                   <input id="password-field" type="password" name="password" class="form-control" required="">
-                                  <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                               </div>
                               <div class="form-group">
                                   <button type="button" onclick="loginForm()" class="form-control btn btn-primary rounded submit px-3 mt-3">Sign In</button>

@@ -12,13 +12,15 @@ $result = $DB->consulta($sql);
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Categories</title>
+  <title>Categories | Lupa CB</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   <!-- Favicons -->
 
-  <link href="../assets/img/favicon.png" rel="icon">
+  <link rel="icon" href="https://lupajuridica.co/wp-content/uploads/2020/07/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="https://lupajuridica.co/wp-content/uploads/2020/07/favicon.ico" sizes="192x192" />
   <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -52,9 +54,14 @@ $result = $DB->consulta($sql);
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="../index.php" class="logo d-flex align-items-center">
+        <img class="navbar-brand" src="https://lupajuridica.co//wp-content/uploads/2020/07/logo_2-1.png" alt="logo">
+
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="../assets/img/logo.png" alt=""> -->
-        <h1>Share Your Opinion</h1>
+        <small style="color:#ed3838;font-weight:500">Community Blogger</small>
+
+
+
       </a>
 
       <nav id="navbar" class="navbar">
@@ -90,24 +97,23 @@ $result = $DB->consulta($sql);
           </li>
 
 
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="http://localhost/Lupablogs/contact.php">Contact</a></li>
         </ul>
       </nav><!-- .navbar -->
 
       <div class="position-relative">
-        <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
-        <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
-        <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
+
 
         <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
         <i class="bi bi-list mobile-nav-toggle"></i>
 
         <!-- ======= Search Form ======= -->
+        <!-- ======= Search Form ======= -->
         <div class="search-form-wrap js-search-form-wrap">
-          <form action="search-result.html" class="search-form">
+          <form id="formSearch" action="../vistas/search-result.php" method="get" class="search-form">
             <span class="icon bi-search"></span>
-            <input type="text" placeholder="Search" class="form-control">
-            <button class="btn js-search-close"><span class="bi-x"></span></button>
+            <input type="text" placeholder="Search" name="busqueda" class="form-control">
+            <button class="btn js-search-close" onclick="document.getElementById('formSearch').submit();" type="submit"><span><i class="fas fa-arrow-right" style="font-size:14px;position:relative;bottom:5px;right:5px"></i></span></button>
           </form>
         </div><!-- End Search Form -->
 
@@ -127,10 +133,10 @@ $result = $DB->consulta($sql);
             <?php
             if ($result) {
               for ($i = 0; $i < count($result); $i++) { ?>
-                <div  class="d-md-flex post-entry-2 half"><a href="article.php?id=<?php echo $result[0]['id']; ?>" class="me-4 thumbnail">
+                <div class="d-md-flex post-entry-2 half"><a href="article.php?id=<?php echo $result[0]['id']; ?>" class="me-4 thumbnail">
                     <img src="../assets/portadas_articulos/<?php echo $result[0]['Imagen']; ?>" alt="" class="img-fluid">
                   </a>
-                  <div>
+                  <div style="overflow-wrap: anywhere;">
                     <div class="post-meta"><span class="date"><?php echo $result[0]['categoria']; ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($result[0]['fecha'], 0, -9); ?></span></div>
                     <h3><a href="article.php?id=<?php echo $result[0]['id']; ?>"><?php echo $result[0]['titulo']; ?></a></h3>
                     <p><?php echo $result[0]['descripcion']; ?></p>
@@ -311,31 +317,8 @@ $result = $DB->consulta($sql);
               </div>
             </div><!-- End Video -->
 
-            <div class="aside-block">
-              <h3 class="aside-title">Categories</h3>
-              <ul class="aside-links list-unstyled">
-                <li><a href="category.php?categoria=Politics"><i class="bi bi-chevron-right"></i> Politics</a></li>
-                <li><a href="category.php?categoria=War"><i class="bi bi-chevron-right"></i> War</a></li>
-                <li><a href="category.php?categoria=Healths"><i class="bi bi-chevron-right"></i> Healths</a></li>
-                <li><a href="category.php?categoria=Global"><i class="bi bi-chevron-right"></i> Global</a></li>
-                <li><a href="category.php?categoria=Covid19"><i class="bi bi-chevron-right"></i> Covid 19</a></li>
+            <?php require '../component/categories_List.php' ?>
 
-              </ul>
-            </div><!-- End Categories -->
-
-            <div class="aside-block">
-              <h3 class="aside-title">Tags</h3>
-              <ul class="aside-tags list-unstyled">
-                <li><a href="category.html">Business</a></li>
-                <li><a href="category.html">Culture</a></li>
-                <li><a href="category.html">Sport</a></li>
-                <li><a href="category.html">Food</a></li>
-                <li><a href="category.html">Politics</a></li>
-                <li><a href="category.html">Celebrity</a></li>
-                <li><a href="category.html">Startups</a></li>
-                <li><a href="category.html">Travel</a></li>
-              </ul>
-            </div><!-- End Tags -->
 
           </div>
 
@@ -364,7 +347,7 @@ $result = $DB->consulta($sql);
               <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
               <li><a href="single-post.html"><i class="bi bi-chevron-right"></i> Single Post</a></li>
               <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
-              <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+              <li><a href="http://localhost/Lupablogs/contact.php"><i class="bi bi-chevron-right"></i> Contact</a></li>
             </ul>
           </div>
           <div class="col-6 col-lg-2">
@@ -479,7 +462,6 @@ $result = $DB->consulta($sql);
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
-  <script src="../assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>

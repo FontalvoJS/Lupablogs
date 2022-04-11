@@ -2,6 +2,7 @@
 require '../modelo/conexion.php';
 if (!isset($_GET['id'])) {
   header("Location: index.php");
+  die();
 } else {
   $id = $_GET['id'];
   $DB = new DB();
@@ -23,12 +24,14 @@ if (!isset($_GET['id'])) {
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-  <title><?php echo $titulo; ?></title>
+  <title><?php echo $titulo; ?> | Lupa CB</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
   <!-- Favicons -->
-  <link href="../assets/img/favicon.png" rel="icon">
+  <link rel="icon" href="https://lupajuridica.co/wp-content/uploads/2020/07/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="https://lupajuridica.co/wp-content/uploads/2020/07/favicon.ico" sizes="192x192" />
   <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -62,9 +65,13 @@ if (!isset($_GET['id'])) {
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="../index.php" class="logo d-flex align-items-center">
+        <img class="navbar-brand" src="https://lupajuridica.co//wp-content/uploads/2020/07/logo_2-1.png" alt="logo">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="../assets/img/logo.png" alt=""> -->
-        <h1>Share your Opinion</h1>
+        <small style="color:#ed3838;font-weight:500">Community Blogger</small>
+
+
+
       </a>
 
 
@@ -102,24 +109,22 @@ if (!isset($_GET['id'])) {
           </li>
 
 
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="http://localhost/Lupablogs/contact.php">Contact</a></li>
         </ul>
       </nav><!-- .navbar -->
 
       <div class="position-relative">
-        <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
-        <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
-        <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
+
 
         <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
         <i class="bi bi-list mobile-nav-toggle"></i>
 
         <!-- ======= Search Form ======= -->
         <div class="search-form-wrap js-search-form-wrap">
-          <form action="search-result.html" class="search-form">
+          <form id="formSearch" action="vistas/search-result.php" method="get" class="search-form">
             <span class="icon bi-search"></span>
-            <input type="text" placeholder="Search" class="form-control">
-            <button class="btn js-search-close"><span class="bi-x"></span></button>
+            <input type="text" placeholder="Search" name="busqueda" class="form-control">
+            <button class="btn js-search-close" onclick="document.getElementById('formSearch').submit();" type="submit"><span><i class="fas fa-arrow-right" style="font-size:14px;position:relative;bottom:5px;right:5px"></i></span></button>
           </form>
         </div><!-- End Search Form -->
 
@@ -142,7 +147,7 @@ if (!isset($_GET['id'])) {
               <h1 class="mb-5"><?php echo $titulo ?></h1>
               <img src="../assets/portadas_articulos/<?php echo $imagen; ?>" class="img-fluid" alt="imagen de portada">
               <hr style="margin-top:5%">
-              <div>
+              <div style="font-size:18px;font-weight:500">
                 <?php echo $redaccion; ?>
               </div>
             </div><!-- End Single Post Content -->
@@ -264,24 +269,26 @@ if (!isset($_GET['id'])) {
                 <!-- Popular -->
 
                 <?php
-                $sql = "SELECT * FROM `posts` WHERE `posts`.`id` != $id ORDER BY `posts`.`id` DESC LIMIT 5";
+                $sql = "SELECT * FROM `posts` ORDER BY `posts`.`id` DESC LIMIT 5";
                 $consulta = $DB->consulta($sql);
 
                 for ($i = 0; $i < count($consulta); $i++) {
 
                 ?>
+                
+                <div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab">
+                      <div class="post-entry-1 border-bottom">
+                        <div class="post-meta"><span class="date"><?php echo substr($consulta[$i]['fecha'], 0, -9); ?></span></div>
+                        <h2 class="mb-2"><a href="article.php?id=<?php echo $consulta[$i]['id'] ?>"><?php echo $consulta[$i]['titulo']; ?></a></h2>
+                        <span class="author mb-3 d-block"><?php echo $consulta[$i]['username'] ?></span>
+                      </div>
 
-                  <div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab">
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta"><span class="date"><?php echo substr($consulta[$i]['fecha'], 0, -9); ?></span></div>
-                      <h2 class="mb-2"><a href="article.php?id=<?php echo $consulta[$i]['id'] ?>"><?php echo $consulta[$i]['titulo']; ?></a></h2>
-                      <span class="author mb-3 d-block"><?php echo $consulta[$i]['username'] ?></span>
                     </div>
-
-                  </div>
                 <?php
                 }
                 ?>
+                <?php require '../component/categories_List.php' ?>
+
               </div>
             </div>
 
@@ -295,31 +302,10 @@ if (!isset($_GET['id'])) {
               </div>
             </div><!-- End Video -->
 
-            <div class="aside-block">
-              <h3 class="aside-title">Categories</h3>
-              <ul class="aside-links list-unstyled">
-                <li><a href="category.php?categoria=War"><i class="bi bi-chevron-right"></i> War</a></li>
-                <li><a href="category.php?categoria=Politics"><i class="bi bi-chevron-right"></i> Politics</a></li>
-                <li><a href="category.php?categoria=Healths"><i class="bi bi-chevron-right"></i> Healths</a></li>
-                <li><a href="category.php?categoria=Global"><i class="bi bi-chevron-right"></i> Global</a></li>
-                <li><a href="category.php?categoria=Covid19"><i class="bi bi-chevron-right"></i> Covid19</a></li>
-
-              </ul>
+           
             </div><!-- End Categories -->
 
-            <div class="aside-block d-none">
-              <h3 class="aside-title">Tags</h3>
-              <ul class="aside-tags list-unstyled">
-                <li><a href="category.html">Business</a></li>
-                <li><a href="category.html">Culture</a></li>
-                <li><a href="category.html">Sport</a></li>
-                <li><a href="category.html">Food</a></li>
-                <li><a href="category.html">Politics</a></li>
-                <li><a href="category.html">Celebrity</a></li>
-                <li><a href="category.html">Startups</a></li>
-                <li><a href="category.html">Travel</a></li>
-              </ul>
-            </div><!-- End Tags -->
+            
 
           </div>
         </div>
@@ -347,7 +333,7 @@ if (!isset($_GET['id'])) {
               <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
               <li><a href="single-post.html"><i class="bi bi-chevron-right"></i> Single Post</a></li>
               <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
-              <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+              <li><a href="http://localhost/Lupablogs/contact.php"><i class="bi bi-chevron-right"></i> Contact</a></li>
             </ul>
           </div>
           <div class="col-6 col-lg-2">
@@ -460,7 +446,6 @@ if (!isset($_GET['id'])) {
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
-  <script src="../assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>

@@ -5,12 +5,14 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ZenBlog Bootstrap Template - Index</title>
+    <title><?php echo $_COOKIE['active'] ?> | Lupa Community Blogger</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!-- Favicons -->
-    <link href="../assets/img/favicon.png" rel="icon">
+    <link rel="icon" href="https://lupajuridica.co/wp-content/uploads/2020/07/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="https://lupajuridica.co/wp-content/uploads/2020/07/favicon.ico" sizes="192x192" />
     <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -38,14 +40,18 @@
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <a href="../index.php" class="logo d-flex align-items-center">
-                <h1>Share your Opinion</h1>
+                <img class="navbar-brand" src="https://lupajuridica.co//wp-content/uploads/2020/07/logo_2-1.png" alt="logo">
+                <small style="color:#ed3838;font-weight:500">Community Blogger</small>
+
+
+
             </a>
 
             <nav id="navbar" class="navbar">
                 <ul>
                     <?php require '../component/botonPerfil.php' ?>
                     <li class="dropdown"><a><span style="cursor:pointer">Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                      <ul>
+                        <ul>
                             <li><a href="../vistas/category.php?categoria=Global">Global</a></li>
                             <li><a href="../vistas/category.php?categoria=Politics">Politics</a></li>
                             <li><a href="../vistas/category.php?categoria=War">Wars</a></li>
@@ -55,7 +61,7 @@
                     </li>
 
 
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="http://localhost/Lupablogs/contact.php">Contact</a></li>
                 </ul>
             </nav><!-- .navbar -->
 
@@ -65,13 +71,14 @@
                 <i class="bi bi-list mobile-nav-toggle"></i>
 
                 <!-- ======= Search Form ======= -->
-                <div class="search-form-wrap js-search-form-wrap">
-                    <form action="search-result.html" class="search-form">
-                        <span class="icon bi-search"></span>
-                        <input type="text" placeholder="Search" class="form-control">
-                        <button class="btn js-search-close"><span class="bi-x"></span></button>
-                    </form>
-                </div><!-- End Search Form -->
+                <!-- ======= Search Form ======= -->
+          <div class="search-form-wrap js-search-form-wrap">
+            <form id="formSearch" action="../vistas/search-result.php" method="get" class="search-form">
+              <span class="icon bi-search"></span>
+              <input type="text" placeholder="Search" name="busqueda" class="form-control">
+              <button class="btn js-search-close" onclick="document.getElementById('formSearch').submit();" type="submit"><span><i class="fas fa-arrow-right" style="font-size:14px;position:relative;bottom:5px;right:5px"></i></span></button>
+            </form>
+          </div><!-- End Search Form -->
 
             </div>
 
@@ -684,7 +691,7 @@
                             <li><a href="../index.php"><i class="bi bi-chevron-right"></i> Log in</a></li>
                             <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
                             <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
-                            <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+                            <li><a href="http://localhost/Lupablogs/contact.php"><i class="bi bi-chevron-right"></i> Contact</a></li>
                         </ul>
                     </div>
                     <div class="col-6 col-lg-2">
@@ -807,7 +814,6 @@
     <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="../assets/vendor/aos/aos.js"></script>
-    <script src="../assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
     <script src="../assets/js/main.js"></script>

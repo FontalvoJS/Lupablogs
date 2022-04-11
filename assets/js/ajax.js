@@ -23,6 +23,37 @@ function loginForm() {
         })
 }
 
+function sendFormContact() {
+    let form = document.getElementById('contactForm');
+    const datosForm = new FormData(form);
+    fetch('http://localhost/Lupablogs/controlador/contacto.php', {
+        method: 'POST',
+        body: datosForm
+    })
+        .then(response => {
+            let data = response.text();
+            return data;
+        })
+        .then(data => {
+            if (data == "Ok") {
+                Swal.fire({
+                    title: 'Very good!',
+                    text: 'It has been sent successfully, I sent you a copy to your email address.',
+                    icon: 'success',
+                    footer: '<a href="#">Quiero ver mi articulo!</a>',
+                })
+                form.reset();
+
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Error, no se ha podido enviar el mensaje',
+                    icon: 'error',
+                })
+            }
+        }
+        )
+}
 function deletePost(id) {
     let list_id = document.getElementById('id' + id);
     Swal.fire({
