@@ -143,7 +143,7 @@ if (!isset($_GET['id'])) {
 
             <!-- ======= Single Post Content ======= -->
             <div class="single-post">
-              <div class="post-meta"><span class="date"><?php echo $categoria ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($post['fecha'], 0, -9) ?></span> <span class="mx-1">&bullet;</span><span><?php echo $autor  ?></span><span class="mx-1">&bullet;</span><span class="mx-1"><?php if(isset($_COOKIE['active'])){ ?><a href="editPost.php?id=<?php echo $id; ?>"><i class="fas fa-edit"></i></a><?php } ?></span> </div>
+              <div class="post-meta"><span class="date"><?php echo $categoria ?></span> <span class="mx-1">&bullet;</span> <span><?php echo substr($post['fecha'], 0, -9) ?></span> <span class="mx-1">&bullet;</span><span><?php echo $autor  ?></span><span class="mx-1">&bullet;</span><span class="mx-1"><?php if (isset($_COOKIE['active'])) { ?><a href="editPost.php?id=<?php echo $id; ?>"><i class="fas fa-edit"></i></a><?php } ?></span> </div>
               <h1 class="mb-5"><?php echo $titulo ?></h1>
               <img src="../assets/portadas_articulos/<?php echo $imagen; ?>" class="img-fluid" alt="imagen de portada">
               <hr style="margin-top:5%">
@@ -442,6 +442,8 @@ if (!isset($_GET['id'])) {
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="sweetalert2.all.min.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>

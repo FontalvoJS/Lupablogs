@@ -22,7 +22,7 @@
                                   <input type="text" name="username" class="form-control" required>
                               </div>
                               <div class="form-group mt-3 mb-2">
-                                  <label class="form-control-placeholder" for="email">Email</label>
+                                  <label class="form-control-placeholder" id="emailReg" for="email">Email</label>
                                   <input type="email" name="email" class="form-control" required>
                               </div>
                               <div class="form-group mt-3">

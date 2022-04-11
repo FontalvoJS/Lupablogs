@@ -14,7 +14,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     <title>Search articles | Lupa CB</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!-- Favicons -->
     <link rel="icon" href="https://lupajuridica.co/wp-content/uploads/2020/07/favicon.ico" sizes="32x32" />
@@ -151,14 +151,14 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                       </div>
                     </div>
                   </div>
-              <?php
+                <?php
                   $i++;
                 }
-              }else{
-              ?>
+              } else {
+                ?>
                 <div class="d-md-flex post-entry-2 small-img">
                   <div>
-                    <div class="post-meta"><span class="date">No se encontraron resultados</span>  <span></span></div>
+                    <div class="post-meta"><span class="date">No se encontraron resultados</span> <span></span></div>
                     <h3><a href="article.php?id="></a></h3>
                     <div class="d-flex align-items-center author">
                       <div class="name">
@@ -167,7 +167,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                     </div>
                   </div>
                 </div>
-                <?php
+              <?php
               }
               ?>
 
@@ -381,6 +381,8 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -389,7 +391,8 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
 
     <!-- Template Main JS File -->
     <script src="../assets/js/main.js"></script>
-
+    <script src="../assets/js/ajax.js"></script>
+  
   </body>
 
   </html>

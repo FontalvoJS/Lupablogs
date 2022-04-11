@@ -23,7 +23,7 @@
                               </div>
                               <div class="form-group">
                                   <label class="form-control-placeholder" for="password">Password</label>
-                                  <input id="password-field" type="password" name="password" class="form-control" required="">
+                                  <input id="password-field" type="password"  name="password" class="form-control" required="">
                               </div>
                               <div class="form-group">
                                   <button type="button" onclick="loginForm()" class="form-control btn btn-primary rounded submit px-3 mt-3">Sign In</button>

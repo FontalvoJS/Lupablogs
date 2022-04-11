@@ -19,6 +19,7 @@ function loginForm() {
                     icon: 'error',
                     confirmButton: false
                 })
+                form.reset();
             }
         })
 }
@@ -121,6 +122,8 @@ function registroForm() {
                     icon: 'error',
                     confirmButton: false
                 })
+                form.reset();
+
             } else {
                 Swal.fire({
                     title: 'Error!',
@@ -128,6 +131,8 @@ function registroForm() {
                     icon: 'error',
                     confirmButton: false
                 })
+                form.reset();
+
             }
         })
 }
