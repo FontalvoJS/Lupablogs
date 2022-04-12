@@ -34,7 +34,7 @@ $mail->FromName = "Contacto LupaBlog";
 $mail->AddAddress($email);
 
 $mail->Subject = $subject;
-$mail->Body = $message;
+$mail->Body =  "Hii! ".$name." You has been send a mail with Lupablogs Community Blogger and this is your message:  ".$message;
 
 $exito = $mail->Send();
 if (!$exito) {

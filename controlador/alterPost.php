@@ -23,7 +23,7 @@ if (isset($_POST['id'])) {
                 move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_carpeta . $nombre_imagen);
                 $sql = "UPDATE posts SET `Imagen` = '$nombre_imagen' WHERE `id` = '$idPost'";
                 $result = $DB->consulta($sql);
-                echo "Ok";
+                echo 00;
             }
         }
     }
@@ -51,7 +51,7 @@ if (isset($_POST['id'])) {
         } else {
             $sql = "UPDATE posts SET `titulo` = '$titulo' WHERE `titulo` = '$tituloOriginal'";
             $result = $DB->consulta($sql);
-            echo "Ok";
+            echo 0;
         }
     }
     if (isset($_POST['descripcion']) && $_POST['descripcion'] != $descripcionOriginal && $_POST['descripcion'] != '') {
@@ -63,7 +63,7 @@ if (isset($_POST['id'])) {
         } else {
             $sql = "UPDATE posts SET `descripcion` = '$descp' WHERE `descripcion` = '$descripcionOriginal'";
             $result = $DB->consulta($sql);
-            echo "Ok";
+            echo 1;
         }
     }
 
@@ -77,7 +77,7 @@ if (isset($_POST['id'])) {
         } else {
             $sql = "UPDATE posts SET `categoria` = '$categoria' WHERE `id` = '$idPost'";
             $result = $DB->consulta($sql);
-            echo "Ok";
+            echo 2;
         }
     }
     if (isset($_POST['redaccion']) && $_POST['redaccion'] != $contenidoOriginal && $_POST['redaccion'] != '') {
@@ -90,7 +90,7 @@ if (isset($_POST['id'])) {
         } else {
             $sql = "UPDATE posts SET `redaccion` = '$reda' WHERE `id` = '$idPost'";
             $result = $DB->consulta($sql);
-            echo "Ok";
+            echo 3;
         }
     }
 } else {

@@ -197,7 +197,7 @@ function alterPost(id) {
             return data;
         })
         .then(data => {
-            if (data == "Ok" || data == "OkOk" || data == "OkOkOk" || data == "OkOkOkOk" || data == "OkOkOkOkOk") {
+            if (data == 00 || data == 0 || data == 0001 || data == 00012 || data == 000123) {
                 Swal.fire({
                     title: 'Muy bien!',
                     text: 'Se ha modificado el post correctamente',
